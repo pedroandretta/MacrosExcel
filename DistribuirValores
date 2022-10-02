@@ -1,0 +1,12 @@
+Sub DistribuirValores()
+  Dim c As Range, v As Variant, i As Long, j As Long
+  Application.ScreenUpdating = False
+    For Each c In Worksheets("COLUNAS EM LINHAS").Range("A1").CurrentRegion
+      If c.Value2 <> "" Then
+       v = Application.Transpose(Split(c.Value2, "|"))
+       i = j + 1: j = j + UBound(v)
+       Worksheets("COLUNAS EM LINHAS2").Range("A" & i, "A" & j).Value2 = v
+      End If
+    Next c
+  Application.ScreenUpdating = True
+End Sub
