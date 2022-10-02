@@ -1,0 +1,15 @@
+Sub ReplicarValores()
+Dim Cel As Range
+Dim Entrada As Range, Saida As Range
+Titulo = "Replicador de Valores"
+Set Entrada = Application.Selection
+Set Entrada = Application.InputBox("Células de Entrada :", Titulo, Entrada.Address, Type:=8)
+Set Saida = Application.InputBox("Selecione a célula inicial para a Saída:", Titulo, Type:=8)
+Set Saida = Saida.Range("A1")
+For Each Cel In Entrada.Rows
+    xValue = Cel.Range("A1").Value
+    xNum = Cel.Range("B1").Value
+    Saida.Resize(xNum, 1).Value = xValue
+    Set Saida = Saida.Offset(xNum, 0)
+Next
+End Sub
