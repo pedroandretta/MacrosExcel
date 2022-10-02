@@ -1,0 +1,17 @@
+Sub CopiarLinhas()
+    Dim xRow As Long
+    Dim VInSertNum As Variant
+    xRow = 1
+    Application.ScreenUpdating = False
+    Do While (Cells(xRow, "A") <> "")
+        VInSertNum = Cells(xRow, "D")
+        If ((VInSertNum > 1) And IsNumeric(VInSertNum)) Then
+           Range(Cells(xRow, "A"), Cells(xRow, "D")).Copy
+           Range(Cells(xRow + 1, "A"), Cells(xRow + VInSertNum - 1, "D")).Select
+           Selection.Insert Shift:=xlDown
+           xRow = xRow + VInSertNum - 1
+        End If
+        xRow = xRow + 1
+    Loop
+    Application.ScreenUpdating = False
+End Sub
